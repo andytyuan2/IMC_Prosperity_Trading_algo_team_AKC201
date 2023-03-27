@@ -66,7 +66,7 @@ class Trader:
             # If statement checks if there are any SELL orders 
             if len(order_depth.sell_orders) != 0:
 
-                for ask in lesser_than_mid:
+                for ask in greater_than_mid:
                     if positions[product] <= Position_Limit:
                         vol = -order_depth.sell_orders[ask]
                         vol = min(Position_Limit-positions[product],vol)
@@ -82,7 +82,7 @@ class Trader:
             # This is an opportunity to sell at a premium
             if len(order_depth.buy_orders) != 0:
 
-                for bid in greater_than_mid:
+                for bid in lesser_than_mid:
                     if positions[product] > -Position_Limit:
                         vol = order_depth.buy_orders[bid]
                         vol = min(-Position_Limit-positions[product],vol) 
